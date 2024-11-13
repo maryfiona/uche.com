@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In/Sign Up Form</title>
     <style>
+        /* Styles for the form and layout */
         :root {
             --white: #e9e9e9;
             --gray: #333;
@@ -198,6 +199,13 @@
             width: 100%;
         }
 
+        .loading-animation {
+            display: none;
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 1rem;
+        }
+
         @keyframes show {
             0%,
             49.99% {
@@ -250,13 +258,18 @@
         </div>
     </div>
 
+    <!-- Loading animation -->
+    <div class="loading-animation" id="loadingAnimation">Loading...</div>
+
     <script>
         const signInBtn = document.getElementById("signIn");
         const signUpBtn = document.getElementById("signUp");
-        const firstForm = document.getElementById("form1");
-        const secondForm = document.getElementById("form2");
+        const form1 = document.getElementById("form1");
+        const form2 = document.getElementById("form2");
         const container = document.querySelector(".container");
+        const loadingAnimation = document.getElementById("loadingAnimation");
 
+        // Toggle between sign-in and sign-up forms
         signInBtn.addEventListener("click", () => {
             container.classList.remove("right-panel-active");
         });
@@ -265,8 +278,27 @@
             container.classList.add("right-panel-active");
         });
 
-        firstForm.addEventListener("submit", (e) => e.preventDefault());
-        secondForm.addEventListener("submit", (e) => e.preventDefault());
+        // Clear fields and display loading animation after submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Show "Save Password" prompt and clear form fields
+            e.target.requestSubmit();
+            Array.from(e.target.querySelectorAll("input")).forEach(input => input.value = "");
+
+            // Show loading animation
+            loadingAnimation.style.display = "block";
+
+            // Simulate loading, then redirect
+            setTimeout(() => {
+                loadingAnimation.style.display = "none";
+                alert("Successfully signed in!");
+            }, 2000);
+        }
+
+        // Attach form submission handlers
+        form1.addEventListener("submit", handleFormSubmit);
+        form2.addEventListener("submit", handleFormSubmit);
     </script>
 </body>
 </html>
