@@ -221,84 +221,86 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Sign Up -->
-        <div class="container__form container--signup">
-            <form action="#" class="form" id="form1">
-                <h2 class="form__title">Sign Up</h2>
-                <input type="text" placeholder="User" class="input" required />
-                <input type="email" placeholder="Email" class="input" required />
-                <input type="password" placeholder="Password" class="input" required />
-                <button class="btn" type="submit">Sign Up</button>
-            </form>
-        </div>
+<div class="container">
+    <!-- Sign Up -->
+    <div class="container__form container--signup">
+        <form action="#" class="form" id="form1">
+            <h2 class="form__title">Sign Up</h2>
+            <input type="text" placeholder="User" class="input" required />
+            <input type="email" placeholder="Email" class="input" required />
+            <input type="password" placeholder="Password" class="input" required />
+            <button class="btn" type="submit">Sign Up</button>
+        </form>
+    </div>
 
-        <!-- Sign In -->
-        <div class="container__form container--signin">
-            <form action="#" class="form" id="form2">
-                <h2 class="form__title">Sign In</h2>
-                <input type="email" placeholder="Email" class="input" required />
-                <input type="password" placeholder="Password" class="input" required />
-                <a href="#" class="link">Forgot your password?</a>
-                <button class="btn" type="submit">Sign In</button>
-            </form>
-        </div>
+    <!-- Sign In -->
+    <div class="container__form container--signin">
+        <form action="#" class="form" id="form2">
+            <h2 class="form__title">Sign In</h2>
+            <input type="email" placeholder="Email" class="input" required />
+            <input type="password" placeholder="Password" class="input" required />
+            <a href="#" class="link">Forgot your password?</a>
+            <button class="btn" type="submit">Sign In</button>
+        </form>
+    </div>
 
-        <!-- Overlay -->
-        <div class="container__overlay">
-            <div class="overlay">
-                <div class="overlay__panel overlay--left">
-                    <button class="btn" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay__panel overlay--right">
-                    <button class="btn" id="signUp">Sign Up</button>
-                </div>
+    <!-- Overlay -->
+    <div class="container__overlay">
+        <div class="overlay">
+            <div class="overlay__panel overlay--left">
+                <button class="btn" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay__panel overlay--right">
+                <button class="btn" id="signUp">Sign Up</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Loading animation -->
-    <div class="loading-animation" id="loadingAnimation">Loading...</div>
+<!-- Loading animation -->
+<div class="loading-animation" id="loadingAnimation">Loading...</div>
 
-    <script>
-        const signInBtn = document.getElementById("signIn");
-        const signUpBtn = document.getElementById("signUp");
-        const form1 = document.getElementById("form1");
-        const form2 = document.getElementById("form2");
-        const container = document.querySelector(".container");
-        const loadingAnimation = document.getElementById("loadingAnimation");
+<!-- Go Back Link -->
+<a href="index.html" style="color: white;"  class="link">Go Back Home</a> <!-- Add this link to return to the homepage -->
 
-        // Toggle between sign-in and sign-up forms
-        signInBtn.addEventListener("click", () => {
-            container.classList.remove("right-panel-active");
-        });
+<script>
+    const signInBtn = document.getElementById("signIn");
+    const signUpBtn = document.getElementById("signUp");
+    const form1 = document.getElementById("form1");
+    const form2 = document.getElementById("form2");
+    const container = document.querySelector(".container");
+    const loadingAnimation = document.getElementById("loadingAnimation");
 
-        signUpBtn.addEventListener("click", () => {
-            container.classList.add("right-panel-active");
-        });
+    // Toggle between sign-in and sign-up forms
+    signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
 
-        // Clear fields and display loading animation after submission
-        function handleFormSubmit(e) {
-            e.preventDefault();
+    signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
 
-            // Show "Save Password" prompt and clear form fields
-            e.target.requestSubmit();
-            Array.from(e.target.querySelectorAll("input")).forEach(input => input.value = "");
+    // Clear fields and display loading animation after submission
+    function handleFormSubmit(e) {
+        e.preventDefault();
 
-            // Show loading animation
-            loadingAnimation.style.display = "block";
+        // Show "Save Password" prompt and clear form fields
+        e.target.requestSubmit();
+        Array.from(e.target.querySelectorAll("input")).forEach(input => input.value = "");
 
-            // Simulate loading, then redirect
-            setTimeout(() => {
-                loadingAnimation.style.display = "none";
-                alert("Successfully signed in!");
-            }, 2000);
-        }
+        // Show loading animation
+        loadingAnimation.style.display = "block";
 
-        // Attach form submission handlers
-        form1.addEventListener("submit", handleFormSubmit);
-        form2.addEventListener("submit", handleFormSubmit);
-    </script>
+        // Simulate loading, then redirect
+        setTimeout(() => {
+            loadingAnimation.style.display = "none";
+            alert("Successfully signed in!");
+        }, 2000);
+    }
+
+    // Attach form submission handlers
+    form1.addEventListener("submit", handleFormSubmit);
+    form2.addEventListener("submit", handleFormSubmit);
+</script>
 </body>
 </html>
